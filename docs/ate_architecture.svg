@@ -1,0 +1,288 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 750" width="100%" height="100%">
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&amp;family=Outfit:wght@400;500;600;700&amp;display=swap');
+        
+        text {
+            font-family: 'Outfit', sans-serif;
+            fill: #e2e8f0;
+        }
+        .code-text {
+            font-family: 'JetBrains Mono', monospace;
+        }
+        .title {
+            font-size: 24px;
+            font-weight: 700;
+            fill: #f8fafc;
+            letter-spacing: 0.5px;
+        }
+        .subtitle {
+            font-size: 14px;
+            fill: #94a3b8;
+        }
+        .box-title {
+            font-size: 16px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+        .pin-label {
+            font-size: 11px;
+            font-weight: 500;
+        }
+        .relay-label {
+            font-size: 12px;
+            font-weight: 500;
+        }
+        
+        /* Node Borders and Backgrounds */
+        .bg-arduino {
+            fill: #0c1a30;
+            stroke: #0ea5e9;
+            stroke-width: 2px;
+            filter: drop-shadow(0 0 8px rgba(14, 165, 233, 0.25));
+        }
+        .bg-matrix {
+            fill: #1c1917;
+            stroke: #f97316;
+            stroke-width: 2px;
+            filter: drop-shadow(0 0 8px rgba(249, 115, 22, 0.25));
+        }
+        .bg-dut {
+            fill: #1e1b4b;
+            stroke: #a855f7;
+            stroke-width: 2px;
+            filter: drop-shadow(0 0 8px rgba(168, 85, 247, 0.25));
+        }
+        .bg-subbox {
+            fill: #1e293b;
+            stroke: #475569;
+            stroke-width: 1px;
+        }
+        
+        /* Connections */
+        .line-control {
+            stroke: #38bdf8;
+            stroke-dasharray: 4,4;
+            stroke-width: 1.5px;
+            fill: none;
+        }
+        .line-stimulus {
+            stroke: #0ea5e9;
+            stroke-width: 2px;
+            fill: none;
+        }
+        .line-sense {
+            stroke: #fbbf24;
+            stroke-width: 1.5px;
+            fill: none;
+        }
+        .line-power-vdd {
+            stroke: #ef4444;
+            stroke-width: 2px;
+            fill: none;
+        }
+        .line-power-gnd {
+            stroke: #10b981;
+            stroke-width: 2px;
+            fill: none;
+        }
+        
+        /* Elements */
+        .capacitor {
+            stroke: #a1a1aa;
+            stroke-width: 2px;
+            fill: none;
+        }
+        .resistor {
+            stroke: #fb7185;
+            stroke-width: 2px;
+            fill: none;
+        }
+    </style>
+    
+<rect width="1100" height="750" fill="#0f0f11"/>
+
+    <defs>
+        <pattern id="grid" width="30" height="30" patternUnits="userSpaceOnUse">
+            <path d="M 30 0 L 0 0 0 30" fill="none" stroke="#ffffff" stroke-width="1" stroke-opacity="0.03"/>
+        </pattern>
+        <marker id="arrow" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+            <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#38bdf8"/>
+        </marker>
+        <marker id="arrow-stim" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+            <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#0ea5e9"/>
+        </marker>
+        <marker id="arrow-sense" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+            <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#fbbf24"/>
+        </marker>
+    </defs>
+    
+<rect width="1100" height="750" fill="url(#grid)"/>
+<text x="40" y="50" class="title">CD4071 ATE Hardware Architecture</text>
+<text x="40" y="70" class="subtitle">Programmatic system-level schematic of relay routing, sensing endpoints, and DUT connections</text>
+<rect x="40" y="100" width="260" height="580" rx="8" class="bg-arduino"/>
+<text x="55" y="130" class="box-title" fill="#38bdf8">ARDUINO MEGA 2560</text>
+<text x="55" y="148" class="subtitle">System Controller</text>
+<text x="55" y="180" fill="#94a3b8" font-size="12" font-weight="bold">Digital IO &amp; Controls</text>
+<rect x="55" y="200" width="230" height="32" rx="4" class="bg-subbox"/>
+<text x="65" y="220" class="code-text pin-label" fill="#38bdf8">D2-D9, D14-D17</text>
+<text x="170" y="220" font-size="11" fill="#94a3b8">Relay Coils (12x)</text>
+<rect x="55" y="240" width="230" height="32" rx="4" class="bg-subbox"/>
+<text x="65" y="260" class="code-text pin-label" fill="#38bdf8">D18, D19</text>
+<text x="170" y="260" font-size="11" fill="#94a3b8">Power Coils (2x)</text>
+<rect x="55" y="280" width="230" height="32" rx="4" class="bg-subbox"/>
+<text x="65" y="300" class="code-text pin-label" fill="#38bdf8">D22-D44</text>
+<text x="170" y="300" font-size="11" fill="#94a3b8">Digital Drive/Endpoints (12x)</text>
+<text x="55" y="330" fill="#fbbf24" font-size="12" font-weight="bold">Analog Sense Channels</text>
+<rect x="55" y="350" width="230" height="32" rx="4" class="bg-subbox"/>
+<text x="65" y="370" class="code-text pin-label" fill="#fbbf24">A0-A3, A12-A15</text>
+<text x="170" y="370" font-size="11" fill="#94a3b8">Input Cap Sense (8x)</text>
+<rect x="55" y="390" width="230" height="32" rx="4" class="bg-subbox"/>
+<text x="65" y="410" class="code-text pin-label" fill="#fbbf24">A4, A6, A8, A10</text>
+<text x="170" y="410" font-size="11" fill="#94a3b8">Output Volt Sense (4x)</text>
+<rect x="55" y="430" width="230" height="32" rx="4" class="bg-subbox"/>
+<text x="65" y="450" class="code-text pin-label" fill="#fbbf24">A5, A7, A9, A11</text>
+<text x="170" y="450" font-size="11" fill="#94a3b8">Load Res Sense (4x)</text>
+<text x="55" y="480" fill="#ef4444" font-size="12" font-weight="bold">Power Rails</text>
+<rect x="55" y="500" width="230" height="32" rx="4" class="bg-subbox"/>
+<text x="65" y="520" class="code-text pin-label" fill="#ef4444">5V / GND</text>
+<text x="170" y="520" font-size="11" fill="#94a3b8">Board Power Bus</text>
+<rect x="410" y="100" width="320" height="580" rx="8" class="bg-matrix"/>
+<text x="425" y="130" class="box-title" fill="#f97316">14-RELAY ROUTING MATRIX</text>
+<text x="425" y="148" class="subtitle">Isolation &amp; Stimulus Routing Shield</text>
+<rect x="425" y="170" width="290" height="145" rx="6" fill="#1e1916" stroke="#ea580c" stroke-opacity="0.5"/>
+<text x="435" y="192" font-size="13" font-weight="bold" fill="#f97316">Input Routing Channels (8x Relays)</text>
+<text x="435" y="210" font-size="11" fill="#a8a29e">Relays: 1, 2, 5, 6, 9, 10, 13, 14</text>
+<line x1="450" y1="240" x2="540" y2="240" stroke="#ea580c" stroke-width="2"/>
+<text x="455" y="233" font-size="10" fill="#a8a29e" class="code-text">Digital Drive</text>
+<line x1="540" y1="240" x2="570" y2="225" stroke="#ea580c" stroke-width="2"/>
+<circle cx="540" cy="240" r="3" fill="#ea580c"/>
+<circle cx="575" cy="240" r="3" fill="#ea580c"/>
+<text x="535" y="220" font-size="11" fill="#fdba74">Relay Switch</text>
+<line x1="575" y1="240" x2="690" y2="240" stroke="#ea580c" stroke-width="2"/>
+<line x1="610" y1="240" x2="610" y2="275" stroke="#ea580c" stroke-width="2"/>
+<line x1="600" y1="275" x2="620" y2="275" class="capacitor"/>
+<line x1="600" y1="280" x2="620" y2="280" class="capacitor"/>
+<line x1="610" y1="280" x2="610" y2="300" stroke="#ea580c" stroke-width="2"/>
+<circle cx="610" cy="300" r="3" fill="#10b981"/>
+<text x="625" y="285" font-size="10" fill="#a8a29e" class="code-text">C = 0.1 uF</text>
+<circle cx="650" cy="240" r="4" fill="#fbbf24"/>
+<line x1="650" y1="240" x2="650" y2="265" stroke="#fbbf24" stroke-width="1.5" stroke-dasharray="2,2"/>
+<text x="655" y="263" font-size="10" fill="#fbbf24" class="code-text">Analog Sense</text>
+<text x="685" y="235" font-size="10" fill="#a8a29e" class="code-text">DUT Pin</text>
+<rect x="425" y="335" width="290" height="145" rx="6" fill="#1e1916" stroke="#ea580c" stroke-opacity="0.5"/>
+<text x="435" y="357" font-size="13" font-weight="bold" fill="#f97316">Output Sense Channels (4x Relays)</text>
+<text x="435" y="375" font-size="11" fill="#a8a29e">Relays: 3, 4, 11, 12</text>
+<text x="440" y="405" font-size="10" fill="#a8a29e" class="code-text">DUT Q Out</text>
+<line x1="495" y1="405" x2="530" y2="405" stroke="#ea580c" stroke-width="2"/>
+<circle cx="530" cy="405" r="3" fill="#ea580c"/>
+<line x1="530" y1="405" x2="565" y2="390" stroke="#ea580c" stroke-width="2"/>
+<circle cx="570" cy="390" r="3" fill="#ea580c"/>
+<text x="577" y="385" font-size="9" fill="#94a3b8" class="code-text">NC (Load)</text>
+<line x1="570" y1="390" x2="610" y2="390" stroke="#ea580c" stroke-width="2"/>
+<path d="M 610 390 L 615 385 L 620 395 L 625 385 L 630 395 L 635 385 L 640 395 L 645 390" class="resistor"/>
+<line x1="645" y1="390" x2="690" y2="390" stroke="#ea580c" stroke-width="2"/>
+<text x="612" y="378" font-size="10" fill="#fb7185" class="code-text">R = 5k</text>
+<circle cx="590" cy="390" r="3.5" fill="#fbbf24"/>
+<text x="580" y="375" font-size="9" fill="#fbbf24" class="code-text">A_sense1</text>
+<circle cx="660" cy="390" r="3.5" fill="#fbbf24"/>
+<text x="652" y="375" font-size="9" fill="#fbbf24" class="code-text">A_sense2</text>
+<circle cx="570" cy="420" r="3" fill="#ea580c"/>
+<text x="577" y="425" font-size="9" fill="#94a3b8" class="code-text">NO (High-Z)</text>
+<line x1="570" y1="420" x2="690" y2="420" stroke="#ea580c" stroke-width="2"/>
+<rect x="425" y="500" width="290" height="145" rx="6" fill="#1e1916" stroke="#ea580c" stroke-opacity="0.5"/>
+<text x="435" y="522" font-size="13" font-weight="bold" fill="#f97316">Power Routing (2x Relays)</text>
+<text x="435" y="540" font-size="11" fill="#a8a29e">Relays: 7 (GND of IC), 8 (VDD of IC)</text>
+<text x="440" y="570" font-size="10" fill="#ef4444" class="code-text">VDD (5V)</text>
+<line x1="490" y1="570" x2="520" y2="570" stroke="#ef4444" stroke-width="2"/>
+<circle cx="520" cy="570" r="3" fill="#ef4444"/>
+<line x1="520" y1="570" x2="550" y2="555" stroke="#ef4444" stroke-width="2"/>
+<circle cx="555" cy="555" r="3" fill="#ef4444"/>
+<text x="565" y="555" font-size="9" fill="#94a3b8" class="code-text">NC (Normal power 5V)</text>
+<circle cx="555" cy="580" r="3" fill="#ea580c"/>
+<text x="565" y="583" font-size="9" fill="#94a3b8" class="code-text">NO (Reversed/Off)</text>
+<line x1="555" y1="555" x2="690" y2="555" stroke="#ef4444" stroke-width="2"/>
+<text x="670" y="548" font-size="9" fill="#ef4444" class="code-text">DUT VDD</text>
+<rect x="810" y="100" width="250" height="580" rx="8" class="bg-dut"/>
+<text x="825" y="130" class="box-title" fill="#a855f7">CD4071 DEVICE UNDER TEST</text>
+<text x="825" y="148" class="subtitle">14-Pin CMOS Quad OR Gate</text>
+<rect x="850" y="190" width="170" height="440" rx="4" fill="#09090b" stroke="#6b21a8" stroke-width="2"/>
+<path d="M 920 190 A 15 15 0 0 0 950 190" fill="#0f0f11" stroke="#6b21a8" stroke-width="2"/>
+<rect x="835" y="222" width="15" height="16" rx="2" fill="#94a3b8"/>
+<text x="858" y="234" font-size="11" font-weight="bold" fill="#e2e8f0" class="code-text">1</text>
+<text x="875" y="235" font-size="12" font-weight="bold" fill="#38bdf8" class="code-text">A1</text>
+<text x="910" y="235" font-size="8" fill="#6b7280">Gate 1 In A</text>
+<rect x="835" y="277" width="15" height="16" rx="2" fill="#94a3b8"/>
+<text x="858" y="289" font-size="11" font-weight="bold" fill="#e2e8f0" class="code-text">2</text>
+<text x="875" y="290" font-size="12" font-weight="bold" fill="#38bdf8" class="code-text">B1</text>
+<text x="910" y="290" font-size="8" fill="#6b7280">Gate 1 In B</text>
+<rect x="835" y="332" width="15" height="16" rx="2" fill="#94a3b8"/>
+<text x="858" y="344" font-size="11" font-weight="bold" fill="#e2e8f0" class="code-text">3</text>
+<text x="875" y="345" font-size="12" font-weight="bold" fill="#c084fc" class="code-text">Q1</text>
+<text x="910" y="345" font-size="8" fill="#6b7280">Gate 1 Out</text>
+<rect x="835" y="387" width="15" height="16" rx="2" fill="#94a3b8"/>
+<text x="858" y="399" font-size="11" font-weight="bold" fill="#e2e8f0" class="code-text">4</text>
+<text x="875" y="400" font-size="12" font-weight="bold" fill="#c084fc" class="code-text">Q2</text>
+<text x="910" y="400" font-size="8" fill="#6b7280">Gate 2 Out</text>
+<rect x="835" y="442" width="15" height="16" rx="2" fill="#94a3b8"/>
+<text x="858" y="454" font-size="11" font-weight="bold" fill="#e2e8f0" class="code-text">5</text>
+<text x="875" y="455" font-size="12" font-weight="bold" fill="#38bdf8" class="code-text">A2</text>
+<text x="910" y="455" font-size="8" fill="#6b7280">Gate 2 In A</text>
+<rect x="835" y="497" width="15" height="16" rx="2" fill="#94a3b8"/>
+<text x="858" y="509" font-size="11" font-weight="bold" fill="#e2e8f0" class="code-text">6</text>
+<text x="875" y="510" font-size="12" font-weight="bold" fill="#38bdf8" class="code-text">B2</text>
+<text x="910" y="510" font-size="8" fill="#6b7280">Gate 2 In B</text>
+<rect x="835" y="552" width="15" height="16" rx="2" fill="#94a3b8"/>
+<text x="858" y="564" font-size="11" font-weight="bold" fill="#e2e8f0" class="code-text">7</text>
+<text x="875" y="565" font-size="12" font-weight="bold" fill="#10b981" class="code-text">GND</text>
+<text x="910" y="565" font-size="8" fill="#6b7280">VSS / Ground</text>
+<rect x="1020" y="222" width="15" height="16" rx="2" fill="#94a3b8"/>
+<text x="998" y="234" font-size="11" font-weight="bold" fill="#e2e8f0" class="code-text">14</text>
+<text x="965" y="235" font-size="12" font-weight="bold" fill="#ef4444" class="code-text">VDD</text>
+<text x="890" y="235" font-size="8" fill="#6b7280" text-anchor="end">Power (3V-15V)</text>
+<rect x="1020" y="277" width="15" height="16" rx="2" fill="#94a3b8"/>
+<text x="998" y="289" font-size="11" font-weight="bold" fill="#e2e8f0" class="code-text">13</text>
+<text x="965" y="290" font-size="12" font-weight="bold" fill="#38bdf8" class="code-text">B4</text>
+<text x="890" y="290" font-size="8" fill="#6b7280" text-anchor="end">Gate 4 In B</text>
+<rect x="1020" y="332" width="15" height="16" rx="2" fill="#94a3b8"/>
+<text x="998" y="344" font-size="11" font-weight="bold" fill="#e2e8f0" class="code-text">12</text>
+<text x="965" y="345" font-size="12" font-weight="bold" fill="#38bdf8" class="code-text">A4</text>
+<text x="890" y="345" font-size="8" fill="#6b7280" text-anchor="end">Gate 4 In A</text>
+<rect x="1020" y="387" width="15" height="16" rx="2" fill="#94a3b8"/>
+<text x="998" y="399" font-size="11" font-weight="bold" fill="#e2e8f0" class="code-text">11</text>
+<text x="965" y="400" font-size="12" font-weight="bold" fill="#c084fc" class="code-text">Q4</text>
+<text x="890" y="400" font-size="8" fill="#6b7280" text-anchor="end">Gate 4 Out</text>
+<rect x="1020" y="442" width="15" height="16" rx="2" fill="#94a3b8"/>
+<text x="998" y="454" font-size="11" font-weight="bold" fill="#e2e8f0" class="code-text">10</text>
+<text x="965" y="455" font-size="12" font-weight="bold" fill="#c084fc" class="code-text">Q3</text>
+<text x="890" y="455" font-size="8" fill="#6b7280" text-anchor="end">Gate 3 Out</text>
+<rect x="1020" y="497" width="15" height="16" rx="2" fill="#94a3b8"/>
+<text x="998" y="509" font-size="11" font-weight="bold" fill="#e2e8f0" class="code-text">9</text>
+<text x="965" y="510" font-size="12" font-weight="bold" fill="#38bdf8" class="code-text">B3</text>
+<text x="890" y="510" font-size="8" fill="#6b7280" text-anchor="end">Gate 3 In B</text>
+<rect x="1020" y="552" width="15" height="16" rx="2" fill="#94a3b8"/>
+<text x="998" y="564" font-size="11" font-weight="bold" fill="#e2e8f0" class="code-text">8</text>
+<text x="965" y="565" font-size="12" font-weight="bold" fill="#38bdf8" class="code-text">A3</text>
+<text x="890" y="565" font-size="8" fill="#6b7280" text-anchor="end">Gate 3 In A</text>
+<path d="M 300 250 L 410 250" class="line-stimulus" marker-end="url(#arrow-stim)"/>
+<text x="355" y="242" font-size="10" fill="#38bdf8" text-anchor="middle">12x Digital Drivers</text>
+<path d="M 300 430 L 410 430" class="line-control" marker-end="url(#arrow)"/>
+<text x="355" y="422" font-size="10" fill="#38bdf8" text-anchor="middle">14x Relay Coils</text>
+<path d="M 410 600 L 300 600" class="line-sense" marker-end="url(#arrow-sense)"/>
+<text x="355" y="592" font-size="10" fill="#fbbf24" text-anchor="middle">16x Analog Sense</text>
+<path d="M 730 555 L 835 230" class="line-power-vdd" marker-end="url(#arrow-stim)"/>
+<path d="M 730 620 H 820 V 560 H 835" class="line-power-gnd" marker-end="url(#arrow-stim)"/>
+<path d="M 730 240 L 790 240 V 285 H 835" class="line-stimulus"/>
+<path d="M 730 390 L 800 390 V 340 H 835" class="line-sense"/>
+<text x="770" y="225" font-size="10" fill="#a855f7" text-anchor="middle">Routed I/Os</text>
+<rect x="780" y="660" width="280" height="70" rx="4" fill="#1e293b" stroke="#334155" stroke-width="1"/>
+<text x="790" y="678" font-size="11" font-weight="bold" fill="#f8fafc">Legend / Signal Flow:</text>
+<line x1="790" y1="700" x2="820" y2="700" class="line-control"/>
+<text x="830" y="703" font-size="10" fill="#94a3b8">Control lines (coils)</text>
+<line x1="920" y1="700" x2="950" y2="700" class="line-stimulus"/>
+<text x="960" y="703" font-size="10" fill="#94a3b8">Drive / Stimulus</text>
+<line x1="790" y1="720" x2="820" y2="720" class="line-sense"/>
+<text x="830" y="723" font-size="10" fill="#94a3b8">Analog Sense</text>
+<line x1="920" y1="720" x2="950" y2="720" class="line-power-vdd"/>
+<text x="960" y="723" font-size="10" fill="#94a3b8">VDD / VSS Power</text>
+</svg>

@@ -8,8 +8,8 @@ This repository contains the firmware, CLI tool, hardware routing documentation,
 
 The system uses a **14-Relay Matrix** to dynamically route VDD, GND, analog sensing, and digital stimulation pins to the CD4071 Device Under Test (DUT).
 
-### System Diagram
-![ATE Hardware Architecture](docs/ate_architecture.svg)
+### Hardware Setup
+![ATE Hardware Setup](docs/ate_hardware.jpg)
 
 ### Key Design Elements:
 1. **Input RC Filters**: Each input channel is equipped with an RC filter capacitor (to control rise times/voltage sweeps). The firmware handles charging and discharging capacitive nodes safely to prevent transient spikes.

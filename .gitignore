@@ -1,0 +1,15 @@
+# Arduino IDE and CLI build outputs
+build/
+bin/
+*.elf
+*.hex
+*.bin
+
+# Local workspace configurations
+.vscode/
+.arduinoIDE/
+
+# OS metadata
+Thumbs.db
+Desktop.ini
+.DS_Store
